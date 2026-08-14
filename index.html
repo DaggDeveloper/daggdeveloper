@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DAGGDeveloper | Desarrollo de Sistemas, PWA y Automatización en Chile</title>
+<meta name="description" content="Desarrollo de sistemas empresariales, aplicaciones web, PWA, automatizaciones e integraciones para empresas y pymes en Chile. DAGGDeveloper — Diego Gómez.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Diego Gómez — DAGGDeveloper">
+<meta name="theme-color" content="#0d1117">
+<!-- PLACEHOLDER: reemplazar por el dominio real cuando exista -->
+<link rel="canonical" href="https://daggdeveloper.cl/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="DAGGDeveloper | Software que resuelve problemas reales">
+<meta property="og:description" content="Desarrollo de sistemas empresariales, aplicaciones web, PWA, automatizaciones e integraciones para empresas y pymes en Chile.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://daggdeveloper.cl/">
+<!-- [AGREGAR IMAGEN REAL 1200x630 en assets/img/og-daggdeveloper.jpg] -->
+<meta property="og:image" content="assets/img/og-daggdeveloper.jpg">
+<meta property="og:site_name" content="DAGGDeveloper">
+<meta property="og:locale" content="es_CL">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DAGGDeveloper | Software que resuelve problemas reales">
+<meta name="twitter:description" content="Sistemas, PWA, apps móviles y automatización para empresas y pymes en Chile.">
+<meta name="twitter:image" content="assets/img/og-daggdeveloper.jpg">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- [AGREGAR favicon-32x32.png y apple-touch-icon.png cuando existan assets reales] -->
+
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Bebas+Neue&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Bebas+Neue&display=swap" rel="stylesheet"></noscript>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Diego Gómez",
+      "alternateName": "Dagg",
+      "jobTitle": "Ingeniero en Informática",
+      "url": "https://daggdeveloper.cl/",
+      "worksFor": { "@type": "Organization", "name": "DAGGDeveloper" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Valdivia", "addressRegion": "Los Ríos", "addressCountry": "CL" }
+    },
+    {
+      "@type": "ProfessionalService",
+      "name": "DAGGDeveloper",
+      "founder": { "@type": "Person", "name": "Diego Gómez" },
+      "areaServed": "CL",
+      "address": { "@type": "PostalAddress", "addressLocality": "Valdivia", "addressRegion": "Los Ríos", "addressCountry": "CL" },
+      "url": "https://daggdeveloper.cl/",
+      "email": "daggdeveloper@gmail.com"
+    },
+    {
+      "@type": "WebSite",
+      "name": "DAGGDeveloper",
+      "url": "https://daggdeveloper.cl/"
+    }
+  ]
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--bg2:#161b22;--surface:#1c2333;--border:#30363d;
+  --tag:#58a6ff;--name:#e6edf3;--accent:#ff6b35;
+  --green:#3fb950;--yellow:#d29922;--purple:#bc8cff;--dim:#8b949e;
+  --mono:'JetBrains Mono',monospace;--display:'Bebas Neue',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--name);font-family:var(--mono);overflow-x:hidden}
+
+/* ACCESSIBILITY */
+.skip-link{position:absolute;left:-999px;top:auto;background:var(--accent);color:#fff;
+  padding:8px 16px;z-index:999;font-size:.7rem;text-decoration:none}
+.skip-link:focus{left:60px;top:8px}
+:focus-visible{outline:2px solid var(--tag);outline-offset:3px}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+/* LINE NUMBER SIDEBAR */
+body::before{content:'';position:fixed;left:0;top:0;bottom:0;width:52px;
+  background:var(--bg2);border-right:1px solid var(--border);z-index:0;pointer-events:none}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border)}
+
+.el{display:flex;align-items:flex-start;position:relative;z-index:1}
+.ln{width:52px;min-width:52px;text-align:right;padding-right:14px;
+  font-size:0.68rem;color:#3d444d;user-select:none;line-height:1.9;flex-shrink:0}
+.lc{flex:1;padding-left:22px;line-height:1.9;font-size:0.8rem}
+
+/* HEADER / NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:200}
+.topnav{display:flex;align-items:center;justify-content:space-between;
+  background:rgba(13,17,23,0.93);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);padding:0 16px 0 52px;height:46px}
+.brand{display:flex;align-items:center;gap:0;color:var(--tag);font-size:.7rem;
+  font-weight:700;text-decoration:none;white-space:nowrap}
+.brand .b-name{color:var(--name);margin:0 1px}
+.nav-toggle{display:none;background:none;border:1px solid var(--border);color:var(--name);
+  font-size:1rem;padding:5px 11px;cursor:pointer;font-family:var(--mono)}
+.nav-drawer{display:flex;height:100%}
+.nav-drawer a{display:flex;align-items:center;gap:6px;padding:0 16px;font-size:.66rem;
+  color:var(--dim);text-decoration:none;border-right:1px solid var(--border);
+  white-space:nowrap;transition:color .2s,background .2s}
+.nav-drawer a:hover,.nav-drawer a.active{color:var(--name);background:var(--surface)}
+.nav-drawer a.nav-cta{color:var(--accent)}
+@media(max-width:900px){
+  .topnav{padding-left:36px}
+  .nav-toggle{display:inline-block}
+  .nav-drawer{display:none;position:absolute;top:46px;left:0;right:0;flex-direction:column;
+    background:var(--bg2);border-bottom:1px solid var(--border);max-height:80vh;overflow-y:auto}
+  .nav-drawer.open{display:flex}
+  .nav-drawer a{border-right:none;border-bottom:1px solid var(--border);padding:14px 16px}
+}
+
+/* HERO */
+.hero{min-height:100vh;padding:90px 0 60px;display:flex;flex-direction:column;
+  justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;right:-20px;top:50%;transform:translateY(-50%);
+  font-family:var(--display);font-size:clamp(100px,16vw,240px);
+  color:rgba(255,107,53,0.04);line-height:1;user-select:none;pointer-events:none}
+.brand-tag{display:flex;align-items:baseline;flex-wrap:wrap;margin:0}
+.t-open,.t-close{color:var(--tag);font-size:clamp(1.3rem,2.6vw,2rem);font-weight:700}
+.t-name{font-family:var(--display);font-size:clamp(1.8rem,4vw,3rem);
+  color:var(--name);letter-spacing:0.02em;line-height:.9}
+.headline{font-family:var(--display);font-size:clamp(2.1rem,5vw,3.9rem);
+  color:var(--name);line-height:1.08;margin-top:1.3rem;max-width:700px}
+.headline span{color:var(--accent)}
+.subhead{font-size:.86rem;color:var(--dim);line-height:1.9;max-width:560px;margin-top:1.1rem}
+.service-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:1.6rem}
+.service-tags li{font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;
+  padding:6px 11px;border:1px solid var(--border);color:var(--dim)}
+.ctas{display:flex;gap:10px;margin-top:2rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;
+  font-family:var(--mono);font-size:0.72rem;letter-spacing:.06em;
+  text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+.btn-p{background:var(--accent);color:#fff}
+.btn-p:hover{background:#ff8555;transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,107,53,.3)}
+.btn-o{background:transparent;color:var(--name);border:1px solid var(--border)}
+.btn-o:hover{border-color:var(--tag);color:var(--tag)}
+.cred-bar{list-style:none;display:flex;gap:26px;flex-wrap:wrap;margin-top:2.4rem;
+  padding-top:1.6rem;border-top:1px solid var(--border);font-size:.68rem;color:var(--dim)}
+.cred-bar li{display:flex;align-items:center;gap:7px}
+.dot-on{width:8px;height:8px;border-radius:50%;background:var(--green);
+  display:inline-block;box-shadow:0 0 6px rgba(63,185,80,.6)}
+
+.avatar{position:absolute;right:80px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.55}
+.avatar-box{width:160px;height:160px;border:1px solid var(--border);background:var(--surface);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  position:relative;font-size:.65rem;color:var(--dim)}
+.avatar-box::before{content:'';position:absolute;top:-1px;left:-1px;width:12px;height:12px;
+  border-top:2px solid var(--accent);border-left:2px solid var(--accent)}
+.avatar-box::after{content:'';position:absolute;bottom:-1px;right:-1px;width:12px;height:12px;
+  border-bottom:2px solid var(--accent);border-right:2px solid var(--accent)}
+.avatar-lbl{font-size:.6rem;color:var(--dim);letter-spacing:.1em}
+
+/* SECTION */
+.section{padding:56px 0;position:relative;z-index:1;max-width:1200px}
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+.sh-o{color:var(--tag);font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:700}
+.sh-n{font-family:var(--display);font-size:clamp(1.8rem,3.5vw,2.8rem);
+  color:var(--name);letter-spacing:.05em;margin:0}
+.sh-l{flex:1;height:1px;background:var(--border);max-width:100px}
+
+/* SOLUTIONS / SERVICES */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;
+  background:var(--border);border:1px solid var(--border)}
+.svc{background:var(--bg);padding:2rem;position:relative;overflow:hidden;transition:background .25s}
+.svc:hover{background:var(--surface)}
+.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc:hover::after{transform:scaleX(1)}
+.svc-num{font-size:.6rem;color:var(--border);letter-spacing:.15em;margin-bottom:1.2rem}
+.svc-ico{font-size:1.6rem;margin-bottom:.8rem;display:block}
+.svc-title{font-size:.92rem;font-weight:700;color:var(--name);margin:0 0 .5rem}
+.svc-desc{font-size:.7rem;color:var(--dim);line-height:1.9;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:1.2rem}
+.chip{font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 7px;border:1px solid var(--border);color:var(--dim)}
+.chip.hi{border-color:rgba(88,166,255,.4);color:var(--tag)}
+
+/* PROBLEMS */
+.prob-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;
+  background:var(--border);border:1px solid var(--border)}
+.prob-card{background:var(--bg);padding:1.6rem;transition:background .2s}
+.prob-card:hover{background:var(--surface)}
+.prob-card h3{font-size:.84rem;color:var(--name);margin:0 0 .5rem;font-weight:700}
+.prob-card p{font-size:.7rem;color:var(--dim);line-height:1.8;margin:0}
+
+/* CASE STUDIES (PORTFOLIO) */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.case{border:1px solid var(--border);background:var(--bg2);padding:1.7rem;transition:border-color .25s}
+.case:hover{border-color:var(--tag)}
+.case.wide{grid-column:span 2}
+.case h3{font-size:1rem;color:var(--name);margin:0 0 .3rem}
+.case-cat{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 1rem}
+.case-body{font-size:.72rem;color:var(--dim);line-height:1.8;margin:0}
+.case-body dt{color:var(--tag);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.9rem}
+.case-body dd{margin:.25rem 0 0}
+.sdot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:5px}
+.sdot.live{background:var(--green);box-shadow:0 0 6px rgba(63,185,80,.5)}
+.sdot.dev{background:var(--yellow)}
+
+/* PROCESS */
+.proceso-steps{list-style:none;display:flex;flex-direction:column;gap:1px;
+  background:var(--border);border:1px solid var(--border)}
+.proceso-steps li{background:var(--bg);padding:1.7rem;display:flex;gap:1.3rem;
+  align-items:flex-start;transition:background .2s}
+.proceso-steps li:hover{background:var(--surface)}
+.step-num{font-family:var(--display);font-size:1.7rem;color:var(--accent);min-width:52px}
+.proceso-steps h3{font-size:.9rem;color:var(--name);margin:0 0 .3rem}
+.proceso-steps p{font-size:.72rem;color:var(--dim);line-height:1.8;margin:0}
+
+/* WHY DAGGDEVELOPER */
+.diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border)}
+.diff-card{background:var(--bg);padding:1.8rem;transition:background .2s}
+.diff-card:hover{background:var(--surface)}
+.diff-num{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.diff-card h3{font-size:.95rem;font-weight:700;color:var(--name);margin:0 0 .6rem}
+.diff-card p{font-size:.7rem;color:var(--dim);line-height:1.9;margin:0}
+
+/* ABOUT */
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.at{font-size:.76rem;color:var(--dim);line-height:2.1}
+.at p{margin-bottom:1rem}
+.at .hl{color:var(--name)}.at .acc{color:var(--accent)}
+.identity-line{font-size:.7rem;color:var(--dim);margin-bottom:1.4rem;letter-spacing:.03em}
+.identity-line strong{color:var(--name)}
+
+.level-row{display:flex;justify-content:space-between;align-items:center;
+  padding:9px 0;border-bottom:1px solid var(--border);font-size:.72rem;color:var(--dim)}
+.level-badge{font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 9px;border:1px solid var(--tag);color:var(--tag);white-space:nowrap}
+.level-badge.mid{border-color:var(--yellow);color:var(--yellow)}
+
+.stack-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:20px;margin-top:1.2rem}
+.stack-cat h4{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 .7rem}
+
+/* FAQ */
+.faq-list{border-top:1px solid var(--border)}
+.faq-list details{border-bottom:1px solid var(--border);padding:16px 0}
+.faq-list summary{cursor:pointer;font-size:.82rem;color:var(--name);list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:'+';color:var(--accent);font-size:1.1rem;flex-shrink:0}
+.faq-list details[open] summary::after{content:'–'}
+.faq-list details p{font-size:.74rem;color:var(--dim);line-height:1.85;margin-top:.8rem}
+
+/* CONTACT */
+.cw{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);background:var(--bg2)}
+.cf{padding:2.5rem;border-right:1px solid var(--border)}
+.ci{padding:2.5rem}
+.fl{margin-bottom:1.3rem}
+.flabel{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);
+  margin-bottom:5px;display:block}
+.fi{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--name);
+  font-family:var(--mono);font-size:.76rem;padding:9px 13px;outline:none;transition:border-color .2s}
+.fi:focus{border-color:var(--tag)}
+textarea.fi{resize:vertical;min-height:90px}
+select.fi{appearance:none}
+.form-status{font-size:.7rem;margin-top:.9rem;line-height:1.7;min-height:1em}
+.form-status.info{color:var(--yellow)}
+.form-status.ok{color:var(--green)}
+.ii{margin-bottom:1.6rem}
+.ilabel{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.ival{font-size:.8rem;color:var(--tag)}
+.avail{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;
+  border:1px solid rgba(63,185,80,.3);background:rgba(63,185,80,.06);
+  font-size:.68rem;color:var(--green);margin-top:1rem}
+
+footer{border-top:1px solid var(--border);position:relative;z-index:1;padding:30px 24px 30px 52px}
+.foot-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap;font-size:.68rem}
+.foot-links a{color:var(--dim);text-decoration:none}
+.foot-links a:hover{color:var(--tag)}
+.foot-meta{font-size:.65rem;color:var(--dim);margin-top:14px}
+
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.cursor{display:inline-block;width:8px;height:14px;background:var(--accent);
+  vertical-align:middle;animation:blink 1s step-end infinite;margin-left:2px}
+
+.fade{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.fade.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:800px){
+  body::before{width:36px}.ln{width:36px;min-width:36px;padding-right:10px}
+  .lc{padding-left:12px}.avatar{display:none}
+  .case.wide{grid-column:span 1}.case-grid{grid-template-columns:1fr}
+  .ag{grid-template-columns:1fr}.diff-grid{grid-template-columns:1fr}
+  .cw{grid-template-columns:1fr}.cf{border-right:none;border-bottom:1px solid var(--border)}
+  footer{padding-left:36px}
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header>
+  <nav class="topnav" aria-label="Navegación principal">
+    <a href="#inicio" class="brand"><span>&lt;DAGG&gt;</span><span class="b-name">DEVELOPER</span><span>&lt;/DAGG&gt;</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-drawer" aria-label="Abrir menú">☰</button>
+    <div id="nav-drawer" class="nav-drawer">
+      <a href="#soluciones">soluciones.ts</a>
+      <a href="#portafolio">portafolio.json</a>
+      <a href="#proceso">proceso.ts</a>
+      <a href="#sobre-mi">daggdeveloper.md</a>
+      <a href="#faq">faq.md</a>
+      <a href="#contacto">contacto.tsx</a>
+      <a href="daggdeveloper-cotizacion.html" class="nav-cta">cotizacion.tsx</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section id="inicio" class="hero" aria-label="Introducción">
+  <div class="hero-bg" aria-hidden="true">DAGG</div>
+  <div class="el"><div class="ln">1</div><div class="lc"></div></div>
+  <div class="el">
+    <div class="ln">2</div>
+    <div class="lc" style="padding-right:220px">
+      <p class="brand-tag" aria-hidden="true">
+        <span class="t-open">&lt;DAGG&gt;</span><span class="t-name">DEVELOPER</span><span class="t-close">&lt;/DAGG&gt;</span>
+      </p>
+      <h1 class="headline">Software que resuelve <span>problemas reales.</span></h1>
+      <p class="subhead">Transformo procesos manuales, información dispersa y tareas repetitivas en sistemas digitales simples, rápidos y escalables.</p>
+      <ul class="service-tags" aria-label="Áreas de trabajo">
+        <li>Sistemas empresariales</li><li>PWA</li><li>Apps móviles</li>
+        <li>Automatización</li><li>Integraciones</li><li>Desarrollo web</li>
+      </ul>
+      <div class="ctas">
+        <a href="#contacto" class="btn btn-p">Quiero digitalizar mi negocio →</a>
+        <a href="#portafolio" class="btn btn-o">Ver proyectos</a>
+      </div>
+      <ul class="cred-bar" aria-label="Credibilidad">
+        <li>6+ años de experiencia</li>
+        <li>Ingeniero en Informática</li>
+        <li>Valdivia · Chile</li>
+        <li><span class="dot-on" aria-hidden="true"></span>Disponible para proyectos</li>
+      </ul>
+    </div>
+  </div>
+  <div class="el"><div class="ln">3</div><div class="lc"></div></div>
+
+  <!-- [AGREGAR foto real: assets/img/diego-gomez.webp — mientras tanto, placeholder] -->
+  <div class="avatar">
+    <div class="avatar-box">
+      <span style="font-size:2.2rem" aria-hidden="true">👤</span>
+      <span style="font-size:.58rem">//foto.jpg</span>
+    </div>
+    <div class="avatar-lbl">@daggdeveloper</div>
+  </div>
+</section>
+
+<!-- SOLUCIONES -->
+<section id="soluciones" class="section fade" aria-labelledby="sol-h">
+  <div class="el" style="margin-bottom:22px">
+    <div class="ln">10</div>
+    <div class="lc">
+      <div class="sh">
+        <span class="sh-o">&lt;</span><h2 id="sol-h" class="sh-n">SOLUCIONES</h2><span class="sh-o">/&gt;</span>
+        <div class="sh-l"></div>
+      </div>
+    </div>
+  </div>
+  <div class="el">
+    <div class="ln">11</div>
+    <div class="lc">
+      <div class="sg">
+        <article class="svc">
+          <div class="svc-num">// 01</div>
+          <span class="svc-ico" aria-hidden="true">🏢</span>
+          <h3 class="svc-title">Sistemas empresariales</h3>
+          <p class="svc-desc">Digitaliza procesos internos, controla información y centraliza operaciones.</p>
+          <div class="chips"><span class="chip hi">PHP</span><span class="chip hi">Node.js</span><span class="chip">PostgreSQL</span></div>
+        </article>
+        <article class="svc">
+          <div class="svc-num">// 02</div>
+          <span class="svc-ico" aria-hidden="true">🌐</span>
+          <h3 class="svc-title">Web y PWA</h3>
+          <p class="svc-desc">Herramientas accesibles desde cualquier dispositivo, instalables y rápidas.</p>
+          <div class="chips"><span class="chip hi">React</span><span class="chip hi">Next.js</span><span class="chip">Tailwind</span></div>
+        </article>
+        <article class="svc">
+          <div class="svc-num">// 03</div>
+          <span class="svc-ico" aria-hidden="true">📱</span>
+          <h3 class="svc-title">Apps móviles</h3>
+          <p class="svc-desc">Apps para Android e iOS, adaptadas al funcionamiento real de tu negocio.</p>
+          <div class="chips"><span class="chip hi">React Native</span><span class="chip">Ionic</span><span class="chip">Expo</span></div>
+        </article>
+        <article class="svc">
+          <div class="svc-num">// 04</div>
+          <span class="svc-ico" aria-hidden="true">⚙️</span>
+          <h3 class="svc-title">Automatización</h3>
+          <p class="svc-desc">Elimina tareas repetitivas y reduce errores en tus procesos diarios.</p>
+          <div class="chips"><span class="chip hi">Python</span><span class="chip">Webhooks</span><span class="chip">Bots</span></div>
+        </article>
+        <article class="svc">
+          <div class="svc-num">// 05</div>
+          <span class="svc-ico" aria-hidden="true">🔗</span>
+          <h3 class="svc-title">Integraciones</h3>
+          <p class="svc-desc">Conecta sistemas, APIs, bases de datos y plataformas entre sí.</p>
+          <div class="chips"><span class="chip hi">REST</span><span class="chip">SOAP</span><span class="chip">APIs</span></div>
+        </article>
+        <article class="svc">
+          <div class="svc-num">// 06</div>
+          <span class="svc-ico" aria-hidden="true">💻</span>
+          <h3 class="svc-title">Desarrollo web</h3>
+          <p class="svc-desc">Sitios rápidos, profesionales y orientados a conversión.</p>
+          <div class="chips"><span class="chip hi">Next.js</span><span class="chip">TypeScript</span></div>
+        </article>
+        <article class="svc">
+          <div class="svc-num">// 07</div>
+          <span class="svc-ico" aria-hidden="true">🧭</span>
+          <h3 class="svc-title">Asesorías</h3>
+          <p class="svc-desc">¿No sabes por dónde partir? Te ayudo a ver claro qué digitalizar primero.</p>
+          <div class="chips"><span class="chip hi">Diagnóstico</span><span class="chip">Roadmap</span></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMAS QUE RESUELVO -->
+<section id="problemas" class="section fade" aria-labelledby="prob-h">
+  <div class="el" style="margin-bottom:22px">
+    <div class="ln">15</div>
+    <div class="lc">
+      <div class="sh">
+        <span class="sh-o" aria-hidden="true">//</span><h2 id="prob-h" class="sh-n">PROBLEMAS QUE RESUELVO</h2>
+        <div class="sh-l"></div>
+      </div>
+    </div>
+  </div>
+  <div class="el">
+    <div class="ln">16</div>
+    <div class="lc">
+      <div class="prob-grid">
+        <div class="prob-card"><h3>¿Trabajas con demasiadas planillas?</h3><p>Transformamos información dispersa en un sistema centralizado.</p></div>
+        <div class="prob-card"><h3>¿Repites tareas todos los días?</h3><p>Automatizamos procesos repetitivos para que dejen de quitarte tiempo.</p></div>
+        <div class="prob-card"><h3>¿No tienes control de la información?</h3><p>Creamos dashboards y sistemas de gestión pensados para tu negocio.</p></div>
+        <div class="prob-card"><h3>¿Tus sistemas no se comunican?</h3><p>Integramos APIs, plataformas y bases de datos entre sí.</p></div>
+        <div class="prob-card"><h3>¿Tu negocio creció y Excel ya no alcanza?</h3><p>Diseñamos una solución que escala junto con tu negocio.</p></div>
+        <div class="prob-card"><h3>¿Tienes una idea pero no sabes cómo construirla?</h3><p>Convertimos la idea en una solución tecnológica viable.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAFOLIO / CASOS -->
+<section id="portafolio" class="section fade" aria-labelledby="port-h">
+  <div class="el" style="margin-bottom:22px">
+    <div class="ln">20</div>
+    <div class="lc">
+      <div class="sh">
+        <span class="sh-o">&lt;</span><h2 id="port-h" class="sh-n">PORTAFOLIO</h2><span class="sh-o">/&gt;</span>
+        <div class="sh-l"></div>
+      </div>
+    </div>
+  </div>
+  <div class="el">
+    <div class="ln">21</div>
+    <div class="lc">
+      <div class="case-grid">
+        <article class="case wide">
+          <h3>Sistema de Gestión de Mantenciones</h3>
+          <p class="case-cat">Sistema empresarial · SaaS · Gestión operacional</p>
+          <dl class="case-body">
+            <dt>Problema</dt>
+            <dd>Empresas que gestionan mantenciones de equipos dependiendo de planillas y coordinación manual, sin trazabilidad de lo que se hizo ni cuándo.</dd>
+            <dt>Solución</dt>
+            <dd>Plataforma para gestionar equipos, mantenimiento preventivo y correctivo, órdenes de trabajo y responsables, todo en un solo lugar.</dd>
+            <dt>Tecnología</dt>
+            <dd><span class="chip hi">React</span> <span class="chip hi">Node.js</span> <span class="chip">PostgreSQL</span> <span class="chip">Multi-tenant</span></dd>
+            <dt>Estado</dt>
+            <dd><span class="sdot dev" aria-hidden="true"></span>En desarrollo</dd>
+          </dl>
+        </article>
+        <article class="case">
+          <h3>Qué Hay de Bueno</h3>
+          <p class="case-cat">PWA · Comunidad · Turismo · Experiencias locales</p>
+          <dl class="case-body">
+            <dt>Problema</dt>
+            <dd>Es difícil descubrir eventos y actividades locales dispersas en distintas redes y canales.</dd>
+            <dt>Solución</dt>
+            <dd>App para descubrir eventos y experiencias cercanas por geolocalización, enfocada en comunidad y turismo local.</dd>
+            <dt>Tecnología</dt>
+            <dd><span class="chip hi">React Native</span> <span class="chip">Geolocalización</span></dd>
+            <dt>Estado</dt>
+            <dd><span class="sdot dev" aria-hidden="true"></span>Concepto</dd>
+          </dl>
+        </article>
+        <article class="case">
+          <h3>Landing para Pyme</h3>
+          <p class="case-cat">Sitio web · Demo</p>
+          <dl class="case-body">
+            <dt>Problema</dt>
+            <dd>Las pymes necesitan presencia web rápida, clara y orientada a que el visitante haga contacto.</dd>
+            <dt>Solución</dt>
+            <dd>Demo orientada a conversión: estructura simple, mensaje claro y llamada a la acción directa.</dd>
+            <dt>Tecnología</dt>
+            <dd><span class="chip hi">Next.js</span> <span class="chip">Tailwind</span></dd>
+            <dt>Estado</dt>
+            <dd><span class="sdot live" aria-hidden="true"></span>Demo</dd>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso" class="section fade" aria-labelledby="proc-h">
+  <div class="el" style="margin-bottom:22px">
+    <div class="ln">30</div>
+    <div class="lc">
+      <div class="sh">
+        <span class="sh-o" aria-hidden="true">//</span><h2 id="proc-h" class="sh-n">CÓMO TRABAJO</h2>
+        <div class="sh-l"></div>
+      </div>
+    </div>
+  </div>
+  <div class="el">
+    <div class="ln">31</div>
+    <div class="lc">
+      <ol class="proceso-steps">
+        <li><span class="step-num" aria-hidden="true">01</span><div><h3>Entendemos</h3><p>Analizamos el problema y cómo funciona actualmente tu negocio.</p></div></li>
+        <li><span class="step-num" aria-hidden="true">02</span><div><h3>Diseñamos</h3><p>Definimos la solución antes de comenzar a programar.</p></div></li>
+        <li><span class="step-num" aria-hidden="true">03</span><div><h3>Construimos</h3><p>Desarrollamos la solución por etapas.</p></div></li>
+        <li><span class="step-num" aria-hidden="true">04</span><div><h3>Probamos</h3><p>Validamos funcionamiento, experiencia y estabilidad.</p></div></li>
+        <li><span class="step-num" aria-hidden="true">05</span><div><h3>Implementamos</h3><p>Ponemos el sistema en producción y entregamos acompañamiento.</p></div></li>
+      </ol>
+      <div class="ctas"><a href="#contacto" class="btn btn-p">Conversemos sobre tu proyecto →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ DAGGDEVELOPER -->
+<section class="section fade" aria-labelledby="why-h">
+  <div class="el" style="margin-bottom:22px">
+    <div class="ln">38</div>
+    <div class="lc">
+      <div class="sh">
+        <span class="sh-o" aria-hidden="true">//</span><h2 id="why-h" class="sh-n">POR QUÉ DAGGDEVELOPER</h2>
+        <div class="sh-l"></div>
+      </div>
+    </div>
+  </div>
+  <div class="el">
+    <div class="ln">39</div>
+    <div class="lc">
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-num">// 01</div>
+          <h3>Nace de un lugar donde no se puede fallar</h3>
+          <p>Vengo de trabajar en sistemas de salud, donde un error afecta a personas reales. Ese cuidado se lo pongo a cualquier proyecto, grande o chico.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-num">// 02</div>
+          <h3>Sistemas que se usan de verdad</h3>
+          <p>No son maquetas ni pruebas: son sistemas que ya usan cientos de personas todos los días. Así de firme construyo lo tuyo.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-num">// 03</div>
+          <h3>Trato directo, sin vueltas</h3>
+          <p>Hablas conmigo, no con un ejecutivo de cuentas. Comunicación clara, plazos que se cumplen y una sola persona responsable de todo.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-num">// 04</div>
+          <h3>Te devuelvo tiempo, no te lo quito</h3>
+          <p>Cada proyecto busca sacarte de encima el trabajo repetitivo que hoy te toma días. Menos planillas, menos errores, más tiempo para lo que importa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MI / DAGGDEVELOPER -->
+<section id="sobre-mi" class="section fade" aria-labelledby="about-h">
+  <div class="el" style="margin-bottom:22px">
+    <div class="ln">44</div>
+    <div class="lc">
+      <div class="sh">
+        <span class="sh-o">&lt;</span><h2 id="about-h" class="sh-n">SOBRE MÍ</h2><span class="sh-o">/&gt;</span>
+        <div class="sh-l"></div>
+      </div>
+    </div>
+  </div>
+  <div class="el">
+    <div class="ln">45</div>
+    <div class="lc">
+      <p class="identity-line"><strong>Diego Gómez</strong> · Ingeniero en Informática · Valdivia, Los Ríos, Chile</p>
+      <div class="ag">
+        <div class="at">
+          <p><span class="hl">daggdeveloper</span> existe para <span class="acc">darte soluciones concretas y ahorrarte tiempo</span>: cambio los procesos lentos y manuales de tu negocio por algo simple y que funciona.</p>
+          <p>Llevo más de <span class="acc">6 años de experiencia real</span> trabajando en el Hospital Base Valdivia, un lugar donde no hay margen para errores y todo tiene que funcionar siempre.</p>
+          <p>Ese mismo cuidado lo aplico en cada proyecto: sistemas <span class="hl">seguros, estables y confiables</span>, sin importar si eres una pyme chica o una empresa grande.</p>
+          <p>La idea es simple: <span class="acc">que ganes tiempo, no que lo pierdas</span>. Nada de páginas bonitas sin fondo — quiero que tu negocio funcione mejor.</p>
+        </div>
+        <div>
+          <div class="level-row"><span>JavaScript / TypeScript</span><span class="level-badge">Avanzado</span></div>
+          <div class="level-row"><span>Angular / Ionic</span><span class="level-badge">Avanzado</span></div>
+          <div class="level-row"><span>PHP / Backend</span><span class="level-badge">Avanzado</span></div>
+          <div class="level-row"><span>Bases de datos</span><span class="level-badge">Avanzado</span></div>
+          <div class="level-row"><span>APIs / Integraciones</span><span class="level-badge">Avanzado</span></div>
+          <div class="level-row" style="border-bottom:none"><span>Mobile (React Native)</span><span class="level-badge mid">Intermedio</span></div>
+        </div>
+      </div>
+
+      <!-- STACK -->
+      <div style="margin-top:3rem">
+        <div style="font-size:.68rem;color:var(--dim);margin-bottom:1rem;letter-spacing:.12em">// stack.ts</div>
+        <div class="stack-cats">
+          <div class="stack-cat">
+            <h4>Frontend</h4>
+            <div class="chips" style="margin-top:0"><span class="chip hi">JavaScript</span><span class="chip hi">TypeScript</span><span class="chip">Angular</span><span class="chip">Ionic</span><span class="chip">React</span></div>
+          </div>
+          <div class="stack-cat">
+            <h4>Backend</h4>
+            <div class="chips" style="margin-top:0"><span class="chip hi">PHP</span><span class="chip">Node.js</span></div>
+          </div>
+          <div class="stack-cat">
+            <h4>Bases de datos</h4>
+            <div class="chips" style="margin-top:0"><span class="chip hi">Oracle</span><span class="chip">MySQL</span><span class="chip">Firebase</span><span class="chip">PostgreSQL</span></div>
+          </div>
+          <div class="stack-cat">
+            <h4>Integraciones</h4>
+            <div class="chips" style="margin-top:0"><span class="chip hi">REST</span><span class="chip">SOAP</span><span class="chip">APIs</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section fade" aria-labelledby="faq-h">
+  <div class="el" style="margin-bottom:22px">
+    <div class="ln">55</div>
+    <div class="lc">
+      <div class="sh">
+        <span class="sh-o" aria-hidden="true">//</span><h2 id="faq-h" class="sh-n">PREGUNTAS FRECUENTES</h2>
+        <div class="sh-l"></div>
+      </div>
+    </div>
+  </div>
+  <div class="el">
+    <div class="ln">56</div>
+    <div class="lc">
+      <div class="faq-list">
+        <details><summary>¿Trabajas con empresas pequeñas?</summary><p>Sí, las soluciones se adaptan al tamaño y necesidades del negocio.</p></details>
+        <details><summary>¿Puedes trabajar con un sistema que ya existe?</summary><p>Sí, dependiendo de la tecnología y arquitectura existente.</p></details>
+        <details><summary>¿Puedes automatizar procesos que actualmente hago en Excel?</summary><p>Sí, primero se analiza el proceso y luego se determina qué conviene automatizar.</p></details>
+        <details><summary>¿Trabajas remotamente?</summary><p>Sí, 100% remoto, con comunicación directa durante todo el proyecto.</p></details>
+        <details><summary>¿Cuánto cuesta desarrollar un sistema?</summary><p>Depende del alcance. El primer paso es entender el problema y definir la solución antes de hablar de precio.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="section fade" aria-labelledby="cont-h">
+  <div class="el" style="margin-bottom:22px">
+    <div class="ln">60</div>
+    <div class="lc">
+      <div class="sh">
+        <span class="sh-o">&lt;</span><h2 id="cont-h" class="sh-n">CONTACTO</h2><span class="sh-o">/&gt;</span>
+        <div class="sh-l"></div>
+      </div>
+    </div>
+  </div>
+  <div class="el">
+    <div class="ln">61</div>
+    <div class="lc">
+      <div class="cw">
+        <form class="cf" id="contact-form" novalidate>
+          <div style="font-size:.68rem;color:var(--dim);margin-bottom:1.4rem">// ¿Tienes un proyecto? Cuéntame.</div>
+          <div class="fl">
+            <label class="flabel" for="f-nombre">Nombre</label>
+            <input class="fi" id="f-nombre" name="nombre" type="text" placeholder="Tu nombre" required>
+          </div>
+          <div class="fl">
+            <label class="flabel" for="f-email">Email</label>
+            <input class="fi" id="f-email" name="email" type="email" placeholder="tu@email.com" required>
+          </div>
+          <div class="fl">
+            <label class="flabel" for="f-empresa">Empresa (opcional)</label>
+            <input class="fi" id="f-empresa" name="empresa" type="text" placeholder="Nombre de tu empresa">
+          </div>
+          <div class="fl">
+            <label class="flabel" for="f-telefono">Teléfono (opcional)</label>
+            <input class="fi" id="f-telefono" name="telefono" type="tel" placeholder="+56 9 ...">
+          </div>
+          <div class="fl">
+            <label class="flabel" for="f-tipo">Tipo de proyecto</label>
+            <select class="fi" id="f-tipo" name="tipo">
+              <option value="sitio-web">Sitio web</option>
+              <option value="sistema">Sistema empresarial</option>
+              <option value="pwa">PWA</option>
+              <option value="app-movil">App móvil</option>
+              <option value="automatizacion">Automatización</option>
+              <option value="integracion">Integración</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="fl">
+            <label class="flabel" for="f-mensaje">Mensaje</label>
+            <textarea class="fi" id="f-mensaje" name="mensaje" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+          </div>
+          <button class="btn btn-p" type="submit" style="width:100%;justify-content:center">Enviar mensaje →</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+        <div class="ci">
+          <div style="font-size:.68rem;color:var(--dim);margin-bottom:2rem">// o escríbeme directo</div>
+          <div class="ii"><div class="ilabel">Email</div><div class="ival"><a href="mailto:daggdeveloper@gmail.com" style="color:inherit;text-decoration:none">daggdeveloper@gmail.com</a></div></div>
+          <div class="ii"><div class="ilabel">Teléfono</div><div class="ival">+569 36151224</div></div>
+          <div class="ii"><div class="ilabel">Ubicación</div><div class="ival">Valdivia, Los Ríos · Chile</div></div>
+          <!-- [AGREGAR enlaces reales de LinkedIn / GitHub / Instagram cuando existan] -->
+          <div class="avail"><span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block" aria-hidden="true"></span>Disponible para nuevos proyectos</div>
+          <div style="margin-top:1.5rem">
+            <a href="daggdeveloper-cotizacion.html" class="btn btn-p" style="display:inline-flex;font-size:.68rem">Solicitar cotización →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <span><span style="color:var(--tag)">&lt;DAGG&gt;</span>DEVELOPER<span style="color:var(--tag)">&lt;/DAGG&gt;</span></span>
+      <div class="foot-meta">© 2026 · Hecho con código desde Chile<span class="cursor" aria-hidden="true"></span></div>
+    </div>
+    <nav class="foot-links" aria-label="Enlaces del pie de página">
+      <a href="#soluciones">Servicios</a>
+      <a href="#portafolio">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+      <a href="daggdeveloper-cotizacion.html">Cotización</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+// Mobile nav toggle
+const toggle = document.getElementById('nav-toggle');
+const drawer = document.getElementById('nav-drawer');
+toggle?.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+drawer?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  drawer.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+}));
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+}, { threshold: .08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('main [id]');
+const navLinks = document.querySelectorAll('.nav-drawer a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+
+// Contact form — honest status, no fake "sent" confirmation (no backend connected yet)
+const form = document.getElementById('contact-form');
+form?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const status = document.getElementById('form-status');
+  status.className = 'form-status info';
+  status.textContent = 'Este formulario todavía no está conectado a un servicio de envío automático. Mientras tanto, escríbeme directo a daggdeveloper@gmail.com y respondo apenas lo vea.';
+});
+</script>
+</body>
+</html>
