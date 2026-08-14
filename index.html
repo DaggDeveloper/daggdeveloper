@@ -153,17 +153,6 @@ header{position:fixed;top:0;left:0;right:0;z-index:200}
 .dot-on{width:8px;height:8px;border-radius:50%;background:var(--green);
   display:inline-block;box-shadow:0 0 6px rgba(63,185,80,.6)}
 
-.avatar{position:absolute;right:80px;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.55}
-.avatar-box{width:160px;height:160px;border:1px solid var(--border);background:var(--surface);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;
-  position:relative;font-size:.65rem;color:var(--dim)}
-.avatar-box::before{content:'';position:absolute;top:-1px;left:-1px;width:12px;height:12px;
-  border-top:2px solid var(--accent);border-left:2px solid var(--accent)}
-.avatar-box::after{content:'';position:absolute;bottom:-1px;right:-1px;width:12px;height:12px;
-  border-bottom:2px solid var(--accent);border-right:2px solid var(--accent)}
-.avatar-lbl{font-size:.6rem;color:var(--dim);letter-spacing:.1em}
-
 /* SECTION */
 .section{padding:56px 0;position:relative;z-index:1;max-width:1200px}
 .sh{display:flex;align-items:center;gap:14px;margin-bottom:36px}
@@ -207,6 +196,13 @@ header{position:fixed;top:0;left:0;right:0;z-index:200}
 .case-body{font-size:.72rem;color:var(--dim);line-height:1.8;margin:0}
 .case-body dt{color:var(--tag);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.9rem}
 .case-body dd{margin:.25rem 0 0}
+.sys-card summary{cursor:pointer;list-style:none;position:relative;padding-right:30px}
+.sys-card summary::-webkit-details-marker{display:none}
+.sys-card summary::after{content:'+';position:absolute;right:0;top:0;color:var(--accent);font-size:1.3rem;line-height:1}
+.sys-card[open] summary::after{content:'–'}
+.sys-card summary h3{margin:0 0 .3rem}
+.sys-card summary .case-cat{margin:0}
+.sys-card .case-body{margin-top:1rem}
 .sdot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:5px}
 .sdot.live{background:var(--green);box-shadow:0 0 6px rgba(63,185,80,.5)}
 .sdot.dev{background:var(--yellow)}
@@ -297,7 +293,7 @@ footer{border-top:1px solid var(--border);position:relative;z-index:1;padding:30
 
 @media(max-width:800px){
   body::before{width:36px}.ln{width:36px;min-width:36px;padding-right:10px}
-  .lc{padding-left:12px}.avatar{display:none}
+  .lc{padding-left:12px}
   .case.wide{grid-column:span 1}.case-grid{grid-template-columns:1fr}
   .ag{grid-template-columns:1fr}.diff-grid{grid-template-columns:1fr}
   .cw{grid-template-columns:1fr}.cf{border-right:none;border-bottom:1px solid var(--border)}
@@ -316,6 +312,7 @@ footer{border-top:1px solid var(--border);position:relative;z-index:1;padding:30
     <div id="nav-drawer" class="nav-drawer">
       <a href="#soluciones">soluciones.ts</a>
       <a href="#portafolio">portafolio.json</a>
+      <a href="#sistemas">sistemas.json</a>
       <a href="#proceso">proceso.ts</a>
       <a href="#sobre-mi">daggdeveloper.md</a>
       <a href="#faq">faq.md</a>
@@ -333,7 +330,7 @@ footer{border-top:1px solid var(--border);position:relative;z-index:1;padding:30
   <div class="el"><div class="ln">1</div><div class="lc"></div></div>
   <div class="el">
     <div class="ln">2</div>
-    <div class="lc" style="padding-right:220px">
+    <div class="lc">
       <p class="brand-tag" aria-hidden="true">
         <span class="t-open">&lt;DAGG&gt;</span><span class="t-name">DEVELOPER</span><span class="t-close">&lt;/DAGG&gt;</span>
       </p>
@@ -356,15 +353,6 @@ footer{border-top:1px solid var(--border);position:relative;z-index:1;padding:30
     </div>
   </div>
   <div class="el"><div class="ln">3</div><div class="lc"></div></div>
-
-  <!-- [AGREGAR foto real: assets/img/diego-gomez.webp — mientras tanto, placeholder] -->
-  <div class="avatar">
-    <div class="avatar-box">
-      <span style="font-size:2.2rem" aria-hidden="true">👤</span>
-      <span style="font-size:.58rem">//foto.jpg</span>
-    </div>
-    <div class="avatar-lbl">@daggdeveloper</div>
-  </div>
 </section>
 
 <!-- SOLUCIONES -->
@@ -519,6 +507,103 @@ footer{border-top:1px solid var(--border);position:relative;z-index:1;padding:30
             <dd><span class="sdot live" aria-hidden="true"></span>Demo</dd>
           </dl>
         </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIS SISTEMAS -->
+<section id="sistemas" class="section fade" aria-labelledby="sist-h">
+  <div class="el" style="margin-bottom:22px">
+    <div class="ln">25</div>
+    <div class="lc">
+      <div class="sh">
+        <span class="sh-o" aria-hidden="true">//</span><h2 id="sist-h" class="sh-n">MIS SISTEMAS</h2>
+        <div class="sh-l"></div>
+      </div>
+    </div>
+  </div>
+  <div class="el">
+    <div class="ln">26</div>
+    <div class="lc">
+      <p style="font-size:.74rem;color:var(--dim);line-height:1.9;max-width:640px;margin-bottom:1.6rem">
+        Acá voy a ir agregando los sistemas reales que construya y entregue a clientes, a medida que se lancen.
+      </p>
+      <div class="case-grid" id="sistemas-grid">
+        <!--
+          PLANTILLA — copia este bloque completo por cada sistema nuevo y complétalo.
+          Es un <details>: al hacer click en el <summary> se abre y muestra la info de abajo.
+          No borres el comentario: déjalo para poder seguir copiando la plantilla después.
+
+        <details class="case sys-card">
+          <summary>
+            <h3>Nombre del sistema</h3>
+            <p class="case-cat">Categoría · Cliente (si se puede mencionar) · Tipo</p>
+          </summary>
+          <dl class="case-body">
+            <dt>Problema</dt>
+            <dd>Qué problema tenía el cliente antes de este sistema.</dd>
+            <dt>Solución</dt>
+            <dd>Qué se construyó y cómo lo resuelve.</dd>
+            <dt>Tecnología</dt>
+            <dd><span class="chip hi">Ej: React</span> <span class="chip">Ej: PostgreSQL</span></dd>
+            <dt>Estado</dt>
+            <dd><span class="sdot live"></span> En producción</dd>
+          </dl>
+        </details>
+        -->
+
+        <details class="case sys-card">
+          <summary>
+            <h3>Cotizador daggdeveloper</h3>
+            <p class="case-cat">Sistema interno · Cotizaciones</p>
+          </summary>
+          <dl class="case-body">
+            <dt>Problema</dt>
+            <dd>Armar cada cotización a mano tomaba tiempo y no tenía un formato consistente para enviar a los clientes.</dd>
+            <dt>Solución</dt>
+            <dd>Wizard de 4 pasos (datos del cliente, servicios, precio y condiciones) que genera una cotización formal en CLP, lista para enviar.</dd>
+            <dt>Tecnología</dt>
+            <dd><span class="chip hi">HTML</span> <span class="chip hi">JavaScript</span></dd>
+            <dt>Estado</dt>
+            <dd><span class="sdot live"></span> En uso</dd>
+          </dl>
+          <a href="daggdeveloper-cotizacion.html" class="btn btn-o" style="margin-top:1.2rem;font-size:.64rem">Abrir cotizador →</a>
+        </details>
+
+        <details class="case sys-card">
+          <summary>
+            <h3>Sitio institucional Escuela Rural Los Pellines</h3>
+            <p class="case-cat">Sistema institucional · Cliente: Escuela Rural Los Pellines</p>
+          </summary>
+          <dl class="case-body">
+            <dt>Problema</dt>
+            <dd>La escuela no tiene presencia web ni un canal claro para compartir información con apoderados y la comunidad.</dd>
+            <dt>Solución</dt>
+            <dd>Sitio institucional con tres niveles (Esencial, Estándar, Premium), desde una versión estática hasta un panel administrativo completo con modo oscuro y accesibilidad WCAG.</dd>
+            <dt>Tecnología</dt>
+            <dd><span class="chip hi">Next.js</span> <span class="chip hi">React</span> <span class="chip">TypeScript</span> <span class="chip">Tailwind</span> <span class="chip">Supabase</span></dd>
+            <dt>Estado</dt>
+            <dd><span class="sdot dev"></span> Propuesta enviada</dd>
+          </dl>
+        </details>
+
+        <details class="case sys-card">
+          <summary>
+            <h3>SaaS de Fichas Clínicas</h3>
+            <p class="case-cat">SaaS · Sector salud</p>
+          </summary>
+          <dl class="case-body">
+            <dt>Problema</dt>
+            <dd>Clínicas y consultorios pequeños siguen llevando fichas clínicas en papel o en planillas dispersas, sin trazabilidad.</dd>
+            <dt>Solución</dt>
+            <dd>Módulo de fichas clínicas como producto SaaS, aplicando los mismos estándares de seguridad y trazabilidad de los sistemas críticos de salud.</dd>
+            <dt>Tecnología</dt>
+            <dd><span class="chip hi">React</span> <span class="chip hi">Node.js</span> <span class="chip">PostgreSQL</span></dd>
+            <dt>Estado</dt>
+            <dd><span class="sdot dev"></span> En planificación</dd>
+          </dl>
+        </details>
       </div>
     </div>
   </div>
